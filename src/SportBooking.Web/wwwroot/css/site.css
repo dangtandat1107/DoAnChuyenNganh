@@ -1,0 +1,17 @@
+:root { --fss: #16a34a; --fss-dark: #166534; }
+body { background: #f8fafc; }
+.navbar-fss { background: linear-gradient(90deg, #166534, #16a34a); }
+.navbar-brand small { font-weight: 400; opacity: .8; font-size: .7rem; display: block; line-height: 1; }
+.avatar { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, #16a34a, #0ea5e9);
+  color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; flex-shrink: 0; }
+.avatar-sm { width: 28px; height: 28px; font-size: .85rem; }
+.profile-hero { background: linear-gradient(135deg, #ecfdf5, #e0f2fe); border-radius: 1.25rem; }
+.stat-card { border: 0; border-radius: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.stat-card .stat-value { font-size: 1.75rem; font-weight: 700; color: var(--fss-dark); }
+.panel-card { border: 0; border-radius: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.hero-home { background: linear-gradient(135deg, #166534, #16a34a 60%, #0ea5e9); color: #fff; border-radius: 1.5rem; }
+.sport-tile { border: 0; border-radius: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,.06); transition: transform .15s; text-decoration: none; color: inherit; }
+.sport-tile:hover { transform: translateY(-3px); color: inherit; }
+.nav-tabs .nav-link.active { color: var(--fss-dark); font-weight: 600; }
+.btn-success { background-color: var(--fss); border-color: var(--fss); }
+.btn-success:hover { background-color: var(--fss-dark); border-color: var(--fss-dark); }

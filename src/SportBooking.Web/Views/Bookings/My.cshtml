@@ -1,0 +1,13 @@
+@model List<Booking>
+@{ ViewData["Title"] = "Lịch của tôi"; }
+<h3>Lịch đặt của tôi</h3>
+<table class="table align-middle">
+<tr><th>Sân</th><th>Thời gian</th><th>Tiền</th><th>Trạng thái</th><th></th></tr>
+@foreach (var b in Model)
+{
+  <tr><td>@b.Court?.Name</td><td>@b.StartTime.ToString("dd/MM/yyyy HH:mm") - @b.EndTime.ToString("HH:mm")</td><td>@b.TotalPrice.ToString("N0")</td>
+  <td>@b.Status.DisplayName()</td>
+  <td>@if (b.Status != BookingStatus.Cancelled && b.StartTime > DateTime.Now)
+      { <form asp-action="Cancel" asp-route-id="@b.Id" method="post"><button class="btn btn-sm btn-outline-danger" onclick="return confirm('Hủy lịch này?')">Hủy</button></form> }</td></tr>
+}
+</table>

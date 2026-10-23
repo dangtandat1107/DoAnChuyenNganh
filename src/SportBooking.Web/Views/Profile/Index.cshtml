@@ -1,0 +1,77 @@
+@model ProfilePageVm
+@{ ViewData["Title"] = "Hồ sơ của tôi"; }
+
+<div class="profile-hero p-4 mb-4 d-flex align-items-center gap-4 flex-wrap">
+  <div class="avatar">@Model.Initial</div>
+  <div>
+    <h3 class="mb-1">@Model.FullName</h3>
+    <div class="text-muted">@Model.Email</div>
+    <span class="badge bg-success mt-2">@Model.RoleLabel</span>
+  </div>
+</div>
+
+@if (Model.Stats.Any())
+{
+  <div class="row g-3 mb-4">
+    @foreach (var s in Model.Stats)
+    {
+      <div class="col-md"><div class="card stat-card"><div class="card-body">
+        <div class="text-muted small">@s.Label</div><div class="stat-value">@s.Value</div>
+      </div></div></div>
+    }
+  </div>
+}
+
+<div class="card panel-card"><div class="card-body">
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item"><button class="nav-link @(Model.ActiveTab == "info" ? "active" : "")" data-bs-toggle="tab" data-bs-target="#tab-info" type="button">Thông tin cá nhân</button></li>
+    <li class="nav-item"><button class="nav-link @(Model.ActiveTab == "password" ? "active" : "")" data-bs-toggle="tab" data-bs-target="#tab-password" type="button">Đổi mật khẩu</button></li>
+    @if (Model.Role == "Customer")
+    {
+      <li class="nav-item"><button class="nav-link @(Model.ActiveTab == "upcoming" ? "active" : "")" data-bs-toggle="tab" data-bs-target="#tab-upcoming" type="button">Lịch sắp tới</button></li>
+    }
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade @(Model.ActiveTab == "info" ? "show active" : "")" id="tab-info">
+      <form asp-action="UpdateProfile" method="post" class="col-lg-6">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3"><label class="form-label">Email</label><input class="form-control" value="@Model.Email" disabled /><div class="form-text">Email dùng để đăng nhập, không thể thay đổi.</div></div>
+        <div class="mb-3"><label class="form-label" asp-for="Edit.FullName"></label><input class="form-control" asp-for="Edit.FullName" /><span asp-validation-for="Edit.FullName" class="text-danger"></span></div>
+        <div class="mb-3"><label class="form-label" asp-for="Edit.PhoneNumber"></label><input class="form-control" asp-for="Edit.PhoneNumber" placeholder="0901234567" /><span asp-validation-for="Edit.PhoneNumber" class="text-danger"></span></div>
+        <button class="btn btn-success">Lưu thay đổi</button>
+      </form>
+    </div>
+
+    <div class="tab-pane fade @(Model.ActiveTab == "password" ? "show active" : "")" id="tab-password">
+      <form asp-action="ChangePassword" method="post" class="col-lg-6">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3"><label class="form-label" asp-for="ChangePassword.CurrentPassword"></label><input class="form-control" asp-for="ChangePassword.CurrentPassword" autocomplete="current-password" /><span asp-validation-for="ChangePassword.CurrentPassword" class="text-danger"></span></div>
+        <div class="mb-3"><label class="form-label" asp-for="ChangePassword.NewPassword"></label><input class="form-control" asp-for="ChangePassword.NewPassword" autocomplete="new-password" /><div class="form-text">Ít nhất 6 ký tự, gồm chữ hoa, chữ thường và số.</div><span asp-validation-for="ChangePassword.NewPassword" class="text-danger"></span></div>
+        <div class="mb-3"><label class="form-label" asp-for="ChangePassword.ConfirmPassword"></label><input class="form-control" asp-for="ChangePassword.ConfirmPassword" autocomplete="new-password" /><span asp-validation-for="ChangePassword.ConfirmPassword" class="text-danger"></span></div>
+        <button class="btn btn-success">Đổi mật khẩu</button>
+      </form>
+    </div>
+
+    @if (Model.Role == "Customer")
+    {
+      <div class="tab-pane fade @(Model.ActiveTab == "upcoming" ? "show active" : "")" id="tab-upcoming">
+        @if (!Model.Upcoming.Any())
+        {
+          <p class="text-muted">Bạn chưa có lịch nào sắp tới. <a asp-controller="Courts" asp-action="Index">Đặt sân ngay</a></p>
+        }
+        else
+        {
+          <table class="table align-middle">
+            <tr><th>Sân</th><th>Thời gian</th><th>Trạng thái</th></tr>
+            @foreach (var b in Model.Upcoming)
+            {
+              <tr><td>@b.Court?.Name</td><td>@b.StartTime.ToString("dd/MM/yyyy HH:mm") - @b.EndTime.ToString("HH:mm")</td><td>@b.Status.DisplayName()</td></tr>
+            }
+          </table>
+          <a asp-controller="Bookings" asp-action="My">Xem tất cả lịch đặt</a>
+        }
+      </div>
+    }
+  </div>
+</div></div>

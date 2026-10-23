@@ -1,0 +1,24 @@
+@model List<Court>
+@{ ViewData["Title"] = "Tìm sân"; }
+<form method="get" class="row g-2 mb-4">
+  <div class="col-md-3"><select name="sport" class="form-select">
+    <option value="">Tất cả môn</option>
+    @foreach (var s in Enum.GetValues<SportType>()) { <option value="@s" selected="@((SportType?)ViewData["Sport"] == s)">@s.DisplayName()</option> }
+  </select></div>
+  <div class="col-md-4"><input name="district" class="form-control" placeholder="Quận (vd: Quận 1)" value="@ViewData["District"]" /></div>
+  <div class="col-md-2"><button class="btn btn-success w-100">Tìm</button></div>
+</form>
+<div class="row">
+@foreach (var c in Model)
+{
+  <div class="col-md-4 mb-3"><div class="card h-100"><div class="card-body">
+    <h5 class="card-title">@c.Name</h5>
+    <p class="mb-1">@c.SportType.DisplayName() · @c.District</p>
+    <p class="text-muted small">@c.Address</p>
+    <p class="fw-bold">@c.PricePerHour.ToString("N0") đ/giờ</p>
+    @if (c.Status == CourtStatus.Maintenance) { <span class="badge bg-warning text-dark">Bảo trì</span> }
+    <a class="btn btn-outline-success btn-sm float-end" asp-action="Details" asp-route-id="@c.Id">Xem lịch</a>
+  </div></div></div>
+}
+@if (!Model.Any()) { <p class="text-muted">Không tìm thấy sân phù hợp.</p> }
+</div>

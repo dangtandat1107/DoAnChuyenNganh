@@ -1,0 +1,11 @@
+@{ ViewData["Title"] = "Trang chủ"; }
+<div class="hero-home p-5 mb-4">
+  <h1 class="display-5 fw-bold">FSS - Friendly Sport Space</h1>
+  <p class="lead mb-4">Không gian thể thao thân thiện. Chọn sân, chọn giờ, ra sân thôi.</p>
+  <a class="btn btn-light btn-lg" asp-controller="Courts" asp-action="Index">Tìm sân ngay</a>
+</div>
+<div class="row g-3">
+  <div class="col-md-4"><a class="card sport-tile h-100" asp-controller="Courts" asp-action="Index" asp-route-sport="Badminton"><div class="card-body text-center p-4"><div class="display-5">🏸</div><h5 class="mt-2">Cầu lông</h5></div></a></div>
+  <div class="col-md-4"><a class="card sport-tile h-100" asp-controller="Courts" asp-action="Index" asp-route-sport="Football"><div class="card-body text-center p-4"><div class="display-5">⚽</div><h5 class="mt-2">Bóng đá</h5></div></a></div>
+  <div class="col-md-4"><a class="card sport-tile h-100" asp-controller="Courts" asp-action="Index" asp-route-sport="Tennis"><div class="card-body text-center p-4"><div class="display-5">🎾</div><h5 class="mt-2">Tennis</h5></div></a></div>
+</div>

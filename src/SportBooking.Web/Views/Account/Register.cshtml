@@ -1,0 +1,17 @@
+@model RegisterVm
+@{ ViewData["Title"] = "Đăng ký"; }
+<div class="row justify-content-center"><div class="col-md-5">
+  <div class="card panel-card"><div class="card-body p-4">
+    <h4>Đăng ký FSS</h4>
+    <form method="post">
+      <div asp-validation-summary="All" class="text-danger"></div>
+      <div class="mb-3"><label class="form-label" asp-for="FullName"></label><input class="form-control" asp-for="FullName" /></div>
+      <div class="mb-3"><label class="form-label" asp-for="Email"></label><input class="form-control" asp-for="Email" /></div>
+      <div class="mb-3"><label class="form-label" asp-for="Password"></label><input class="form-control" asp-for="Password" /><div class="form-text">Ít nhất 6 ký tự, gồm chữ hoa, chữ thường và số.</div></div>
+      <div class="mb-3"><label class="form-label" asp-for="Role"></label>
+        <select class="form-select" asp-for="Role"><option value="Customer">Khách hàng</option><option value="Owner">Chủ sân</option></select></div>
+      <button class="btn btn-success w-100">Tạo tài khoản</button>
+    </form>
+    <div class="text-center mt-3">Đã có tài khoản? <a asp-action="Login">Đăng nhập</a></div>
+  </div></div>
+</div></div>

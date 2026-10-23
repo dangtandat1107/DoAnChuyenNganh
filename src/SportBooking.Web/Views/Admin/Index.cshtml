@@ -1,0 +1,13 @@
+@model AdminDashboardVm
+@{ ViewData["Title"] = "Admin"; }
+<h3>Tổng quan hệ thống</h3>
+<div class="row my-3">
+  <div class="col"><div class="card"><div class="card-body"><div class="text-muted">Người dùng</div><h3>@Model.Users</h3></div></div></div>
+  <div class="col"><div class="card"><div class="card-body"><div class="text-muted">Sân</div><h3>@Model.Courts</h3></div></div></div>
+  <div class="col"><div class="card"><div class="card-body"><div class="text-muted">Lượt đặt</div><h3>@Model.Bookings</h3></div></div></div>
+  <div class="col"><div class="card"><div class="card-body"><div class="text-muted">Doanh thu (đã duyệt)</div><h3>@Model.Revenue.ToString("N0")</h3></div></div></div>
+</div>
+<h5>Người dùng</h5>
+<table class="table"><tr><th>Email</th><th>Họ tên</th><th>Vai trò</th></tr>
+@foreach (var u in Model.UserList) { <tr><td>@u.Email</td><td>@u.FullName</td><td>@u.Roles</td></tr> }
+</table>

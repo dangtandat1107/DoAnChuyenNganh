@@ -1,0 +1,16 @@
+@model LoginVm
+@{ ViewData["Title"] = "Đăng nhập"; }
+<div class="row justify-content-center"><div class="col-md-5">
+  <div class="card panel-card"><div class="card-body p-4">
+    <h4>Đăng nhập FSS</h4>
+    <form method="post"><input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+      <div asp-validation-summary="All" class="text-danger"></div>
+      <div class="mb-3"><label class="form-label" asp-for="Email"></label><input class="form-control" asp-for="Email" /></div>
+      <div class="mb-3"><label class="form-label" asp-for="Password"></label><input class="form-control" asp-for="Password" /></div>
+      <button class="btn btn-success w-100">Đăng nhập</button>
+    </form>
+    <div class="d-flex justify-content-between mt-3"><a asp-action="ForgotPassword">Quên mật khẩu?</a><a asp-action="Register">Tạo tài khoản</a></div>
+    <hr />
+    <p class="text-muted mb-0 small">Demo: admin@demo.com / Admin@123, owner@demo.com / Owner@123, customer@demo.com / Customer@123</p>
+  </div></div>
+</div></div>
