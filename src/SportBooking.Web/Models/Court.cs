@@ -1,0 +1,16 @@
+namespace SportBooking.Web.Models;
+
+public class Court
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public SportType SportType { get; set; }
+    public string District { get; set; } = "";
+    public string Address { get; set; } = "";
+    public decimal PricePerHour { get; set; }
+    public CourtStatus Status { get; set; } = CourtStatus.Active;
+
+    public string OwnerId { get; set; } = "";
+    public ApplicationUser? Owner { get; set; }
+    public List<Booking> Bookings { get; set; } = new();
+}
