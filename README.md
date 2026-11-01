@@ -11,7 +11,7 @@ Hệ thống đặt lịch sân thể thao (cầu lông, bóng đá, tennis) - �
 - Tìm hiểu yêu cầu đề cương, chốt bộ công nghệ (ASP.NET Core MVC, EF Core, SQL Server, Docker)
 - Xác định 3 actor (Khách hàng, Chủ sân, Admin) và hướng tích hợp AI (chatbot đặt sân, dự báo giờ cao điểm)
 
-### Tuần 2 - Bắt đầu xây dựng
+### Tuần 2 - Tạo repository và xây dựng cơ sở dữ liệu
 Đã làm trong tuần này:
 - Tạo repository GitHub, cấu hình `.gitignore`, quy ước Conventional Commits
 - Dựng khung dự án ASP.NET Core 8 MVC, thiết kế CSDL Code-First (Court, Booking, ApplicationUser) và migration đầu tiên
@@ -20,9 +20,15 @@ Hệ thống đặt lịch sân thể thao (cầu lông, bóng đá, tennis) - �
 - Chống đặt trùng giờ bằng transaction mức Serializable
 - Trang hồ sơ cá nhân, đổi mật khẩu, quên mật khẩu bằng mã xác nhận gửi qua Gmail
 - Đổi tên thương hiệu thành FSS (Friendly Sport Space)
-- Dockerfile, `docker-compose.yml`, Serilog, health check `/health`
 
-Dự kiến tuần 3: unit test cho `BookingService`, thanh toán giả lập, tự hủy booking chưa thanh toán (xử lý nền).
+### Tuần 3 - Đóng gói, khảo sát và thiết kế
+Đã làm trong tuần này:
+- Đóng gói bằng Docker Compose (web + SQL Server), chạy thành công, có health check `/health` và Serilog
+- Khảo sát các ứng dụng đặt sân tương tự (Playo, Play Space, Hi5Sport, Skedda, Playtomic) để bổ sung tính năng
+- Chốt lộ trình 15 hạng mục từ dễ đến khó, mở rộng phạm vi: order nước kèm, khuyến mãi, nhân viên sân, ghi nhận sự cố, chuỗi tập luyện, 2 chức năng AI (chatbot đặt sân, tư vấn môn thể thao)
+- Dựng bản nháp ERD bằng Case Studio (đang hoàn thiện kiểu dữ liệu và quan hệ)
+
+Dự kiến tuần 4: hoàn thiện ERD, vẽ Use Case (StarUML), unit test cho `BookingService`, thanh toán giả lập.
 
 ## Công nghệ
 - ASP.NET Core 8 MVC, Razor Views, Bootstrap 5
